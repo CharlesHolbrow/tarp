@@ -4,6 +4,9 @@ dpipes := $(wildcard dpipes/*.go)
 bin/tarp:
 	cd tarp && make tarp
 
+bin/tarp_static:
+	cd tarp && make tarp_static
+
 bin/tarp-full:
 	cd tarp && make tarp-full
 
