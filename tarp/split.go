@@ -5,7 +5,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/tmbdev/tarp/dpipes"
+	"github.com/webdataset/dpipes"
 )
 
 var splitopts struct {
@@ -31,9 +31,13 @@ func splitcmd() {
 			proc.Run()
 		}
 	}
+	// dpipes.Processing is Defined in process.go
 	dpipes.Processing(
+		// source func(Pipe)
 		dpipes.TarSources(splitopts.Positional.Inputs, nil),
+		// process func(Pipe, Pipe)
 		dpipes.SliceSamplesSpec(splitopts.Slice),
+		// destination func(Pipe)
 		dpipes.ShardingTarSink(
 			splitopts.Count,
 			int(splitopts.Size),

@@ -5,7 +5,7 @@ import (
 	"io"
 	"regexp"
 
-	"github.com/tmbdev/tarp/dpipes"
+	"github.com/webdataset/dpipes"
 )
 
 var createopts struct {

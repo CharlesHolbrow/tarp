@@ -1,4 +1,4 @@
-module github.com/tmbdev/tarp/dpipes
+module github.com/webdataset/dpipes
 
 go 1.17
 

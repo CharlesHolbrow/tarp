@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/tmbdev/tarp/dpipes"
+	"github.com/webdataset/dpipes"
 )
 
 var catopts struct {

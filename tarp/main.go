@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/jessevdk/go-flags"
-	"github.com/tmbdev/tarp/dpipes"
+	"github.com/webdataset/dpipes"
 )
 
 var opts struct {

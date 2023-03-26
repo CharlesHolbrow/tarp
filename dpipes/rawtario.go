@@ -125,8 +125,9 @@ func TarRawSource(stream io.Reader) func(RawPipe) {
 	}
 }
 
-// TarRawSink takes raw key value pairs from a channel and
-// write them into a tar archive.
+// TarRawSink takes raw key value pairs from a channel and write them into a tar
+// archive. This accepts output writer as an argument, and returns a function that
+// accepts the inputs via RawPipe (golang `chan Raw`)
 func TarRawSink(stream io.Writer) func(RawPipe) {
 	return func(inch RawPipe) {
 		tr := tar.NewWriter(stream)
@@ -144,6 +145,7 @@ func TarRawSink(stream io.Writer) func(RawPipe) {
 			header.AccessTime = header.ModTime
 			header.ChangeTime = header.ModTime
 			if err := tr.WriteHeader(&header); err != nil {
+				Debug.Println("ERROR (TarRawSing): failed to write header")
 				panic(err)
 			}
 			samplestream := bytes.NewReader(sample.Value)

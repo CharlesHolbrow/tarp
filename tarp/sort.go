@@ -8,7 +8,7 @@ import (
 
 	"github.com/dgraph-io/badger/v3"
 	"github.com/shamaton/msgpack"
-	"github.com/tmbdev/tarp/dpipes"
+	"github.com/webdataset/dpipes"
 )
 
 var sortopts struct {

@@ -3,7 +3,7 @@ package main
 import (
 	"strings"
 
-	"github.com/tmbdev/tarp/dpipes"
+	"github.com/webdataset/dpipes"
 )
 
 var procopts struct {

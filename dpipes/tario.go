@@ -176,12 +176,17 @@ func ShardingTarSink(maxcount, maxsize int, pattern string, callback func(string
 		count := 0
 		shards := make(chan Pipe, Pipesize)
 		go MakeShards(maxcount, maxsize)(inch, shards)
+		// For Each shard, create an output stream
 		for inch := range shards {
 			name := fmt.Sprintf(pattern, count)
 			Progress.Println("# shard", name)
 			count++
-			stream, _ := GCreate(name)
-			TarSink(stream)(inch)
+			shardWriteCloser, err := GCreate(name)
+			if err != nil {
+				Debug.Print("Failed to create output stream for shard (tario.go)", err)
+				Progress.Fatal(err)
+			}
+			TarSink(shardWriteCloser)(inch)
 			if callback != nil {
 				callback(name)
 			}
