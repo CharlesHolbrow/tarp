@@ -10,6 +10,7 @@ import (
 
 var splitopts struct {
 	Count      int     `short:"c" long:"count" description:"max count per shard" default:"1000000"`
+	StartIndex int     `long:"start-index" description:"add this to the shard" default:"0"`
 	Size       float64 `short:"s" long:"size" description:"max size per shard" default:"1e9"`
 	Pattern    string  `short:"o" long:"output" description:"output pattern" default:"split-%06d.tar"`
 	Post       string  `short:"p" long:"post" description:"command running after each shard; use %s for shard file"`
@@ -42,6 +43,7 @@ func splitcmd() {
 			splitopts.Count,
 			int(splitopts.Size),
 			splitopts.Pattern,
+			splitopts.StartIndex,
 			post),
 	)
 }

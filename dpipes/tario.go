@@ -171,9 +171,9 @@ func TarSinkFile(fname string) func(Pipe) {
 
 // ShardingTarSink takes samples and splits them up across multiple
 // shards, respecting sample boundaries.
-func ShardingTarSink(maxcount, maxsize int, pattern string, callback func(string)) func(Pipe) {
+func ShardingTarSink(maxcount, maxsize int, pattern string, startIndex int, callback func(string)) func(Pipe) {
 	return func(inch Pipe) {
-		count := 0
+		count := startIndex
 		shards := make(chan Pipe, Pipesize)
 		go MakeShards(maxcount, maxsize)(inch, shards)
 		// For Each shard, create an output stream
